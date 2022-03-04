@@ -6,8 +6,9 @@ for (let i = 0;i<n;i++){
 function handleClick() {
 
     var clickedButton = this.innerHTML;
-    soundOnKey(clickedButton)
+    soundOnKey(clickedButton);
 
+    flashButton(clickedButton);
 
 }
 
@@ -15,7 +16,14 @@ function handleClick() {
 
 
 
-document.addEventListener("keydown",function(event){soundOnKey(event.key)})
+document.addEventListener("keydown",function(event)
+{
+    soundOnKey(event.key);
+
+    flashButton(event.key);
+
+});
+
 
 function soundOnKey(key){
 
@@ -53,4 +61,12 @@ function soundOnKey(key){
         default:console.log(clickedButton)
 
     }
+}
+
+function flashButton(pressedKey){
+    var currentButton = document.querySelector("."+pressedKey);
+    currentButton.classList.add("pressed");
+    setTimeout(function(){
+        currentButton.classList.remove("pressed");
+    },100)
 }
